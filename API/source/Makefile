@@ -1,10 +1,10 @@
 CPPFLAGS= -c -g -Wall -pedantic -std=c++17 
 
-prog.out: Dr3D_gnuplot_api.o main.o
-	g++ -o prog.out main.o Dr3D_gnuplot_api.o shapes.o -lpthread
+prog.out: Dr3D_gnuplot_api.o example.o
+	g++ -o prog.out example.o Dr3D_gnuplot_api.o -lpthread
 
-main.o: main.cpp Dr3D_gnuplot_api.hh
-	g++ ${CPPFLAGS} -o main.o main.cpp
+example.o: example.cpp Dr3D_gnuplot_api.hh
+	g++ ${CPPFLAGS} -o example.o example.cpp
 
 Dr3D_gnuplot_api.o: Dr3D_gnuplot_api.cpp Dr3D_gnuplot_api.hh
 	g++ ${CPPFLAGS} -o Dr3D_gnuplot_api.o Dr3D_gnuplot_api.cpp
