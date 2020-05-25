@@ -14,6 +14,10 @@ void boat::move(Vector<double,3> shift)
       lscrew.move_xyz(step);
       lscrew.erase();
       lscrew.plot();
+      rscrew.rot_x(PI/12);
+      rscrew.move_xyz(step);
+      rscrew.erase();
+      rscrew.plot();
       erase();
       plot();
     }

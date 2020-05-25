@@ -16,7 +16,6 @@ bottom::bottom(float size, float height, std::shared_ptr<drawNS::Draw3DAPI> newa
 	{
 	  point[1]=-size+j*size/2;
 	  points[SURF_POINTS*i+j]=point;
-	  
 	}
     }
 }
@@ -33,6 +32,7 @@ void bottom::draw()
 	  add.push_back(Point3D(points[SURF_POINTS*i+j][0],points[SURF_POINTS*i+j][1],points[SURF_POINTS*i+j][2]));
 	}
       points_to_plot.push_back(add);
+      add.clear();
     }
   api->draw_surface(points_to_plot, "grey");
 }
@@ -75,6 +75,7 @@ void water::draw()
 	  add.push_back(Point3D(points[SURF_POINTS*j+i][0],points[SURF_POINTS*j+i][1],points[SURF_POINTS*j+i][2]));
 	}
       points_to_plot.push_back(add);
+      add.clear();
     }
   api->draw_surface(points_to_plot, "blue");
 }
