@@ -1,3 +1,4 @@
+#pragma once
 #include "vect.hh"
 
 template <class TYPE, unsigned SIZE>

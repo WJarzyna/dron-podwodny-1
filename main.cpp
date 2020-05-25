@@ -1,22 +1,25 @@
-#include "shapes.hh"
+#include "boat.hh"
+#include "surfaces.hh"
 using drawNS::APIGnuPlot3D;
 
+#define SCN_SIZE 10
+#define SCN_DEPTH -10
+#define WAT_H 9
 
 int main()
 {
-  std::shared_ptr<drawNS::Draw3DAPI> api(new APIGnuPlot3D(-10,10,-10,10,-10,10,0));//inicjalizacja gnuplota
-  cuboid cube(4,4,4);
-  Vector<double,3> V;
-  V[0]=V[1]=V[2]=-8;
-  cube.move_xyz(V);
-  api->draw_polyhedron(cube.plot());//znika po narysowaniu lodki
-  
+  std::shared_ptr<drawNS::Draw3DAPI> api(new APIGnuPlot3D(-SCN_SIZE,SCN_SIZE,-SCN_SIZE,SCN_SIZE,SCN_DEPTH,-SCN_DEPTH,0));//inicjalizacja gnuplota
 
+  bottom sand(SCN_SIZE,SCN_DEPTH,api);
+  water top(SCN_SIZE,WAT_H,api);
   
-  cuboid boat(5,2,2);
-  int cubeid=api->draw_polyhedron(boat.plot());
+  sand.draw();
+  top.draw();
 
-  int ctrl_flag=0;
+  boat boat(api);
+  boat.plot();
+
+  bool ctrl_flag=false;
   while(!ctrl_flag)
     {
       Vector<double,3> m;
@@ -28,18 +31,10 @@ int main()
 	case 'd':boat.rot_z(PI/12);break;
 	case 'r':boat.rot_x(-PI/36);break;
 	case 'f':boat.rot_x(PI/36);break;
-	case 'q':ctrl_flag=1;break;
+	case 'q':ctrl_flag=true;break;
 	}
       boat.move(m);
-      api -> erase_shape(cubeid);
-      cubeid=api->draw_polyhedron(boat.plot());
       api ->redraw();
     }
-  for (unsigned x=0; x<255; ++x)
-    {
-      boat.rot_z(PI/12);
-      api -> erase_shape(cubeid);
-      cubeid=api->draw_polyhedron(boat.plot());
-      api ->redraw();
-    }
+  
 }

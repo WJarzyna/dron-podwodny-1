@@ -1,7 +1,9 @@
 #include "shapes.hh"
 
-cuboid::cuboid(double x, double y, double z)
+cuboid::cuboid(double x, double y, double z, std::shared_ptr<drawNS::Draw3DAPI> newapi)
 {
+  api=newapi;
+  //rot_matrix[0][0]=rot_matrix[1][1]=rot_matrix[2][2]=1;
   Vector<double,3> vect;
   vect[0]=-x/2;
   vect[1]=-y/2;
@@ -17,7 +19,7 @@ cuboid::cuboid(double x, double y, double z)
 
 
 
-vector<vector<Point3D>> cuboid::plot()
+void cuboid::plot()
 {
   vector<vector<Point3D> > apex_to_plot=vector<vector<Point3D> > {{
       Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0)},{
@@ -31,7 +33,7 @@ vector<vector<Point3D>> cuboid::plot()
 	   apex_to_plot[i/4][i%4][j]=out[j];
 	}
     }
-  return apex_to_plot;
+  id=api->draw_polyhedron( apex_to_plot,"black");
 }
 
 
@@ -57,8 +59,89 @@ Matrix<double,3> polyhedron::rot_matrix()
   return rot_x*rot_y*rot_z;
 }
 
+/*
+void polyhedron::rot_z(double angle)
+{
+  Matrix<double,3> rot_z;
+  rot_z[0][0]=cos(angle_z);
+  rot_z[0][1]=sin(angle_z);
+  rot_z[1][0]=-sin(angle_z);
+  rot_z[1][1]=cos(angle_z);
+  rot_z[2][2]=1;
+  rot_matrix=rot_matrix*rot_z;
+}
 
 void cuboid::move(Vector<double,3> shift)
 {
-  move_xyz(rot_matrix()*shift);
+  move_xyz(rot_matrix*shift);
+}
+*/
+
+hex_prism::hex_prism(double h, double r,std::shared_ptr<drawNS::Draw3DAPI> newapi)
+{
+  api=newapi;
+
+  //rot_matrix[0][0]=rot_matrix[1][1]=rot_matrix[2][2]=1;
+  apex[0][0]=r;
+  apex[0][2]=h/2;
+
+  apex[1][0]=r/2;
+  apex[1][1]=r*0.865;
+  apex[1][2]=h/2;
+
+  apex[2][0]=-r/2;
+  apex[2][1]=r*0.865;
+  apex[2][2]=h/2;
+
+   apex[3][0]=-r;
+  apex[3][2]=h/2;
+
+  apex[4][0]=-r/2;
+  apex[4][1]=-r*0.865;
+  apex[4][2]=h/2;
+
+  apex[5][0]=r/2;
+  apex[5][1]=-r*0.865;
+  apex[5][2]=h/2;
+
+   apex[6][0]=r;
+  apex[6][2]=-h/2;
+
+  apex[7][0]=r/2;
+  apex[7][1]=r*0.865;
+  apex[7][2]=-h/2;
+
+  apex[8][0]=-r/2;
+  apex[8][1]=r*0.865;
+  apex[8][2]=-h/2;
+
+  apex[9][0]=-r;
+  apex[9][2]=-h/2;
+
+  apex[10][0]=-r/2;
+  apex[10][1]=-r*0.865;
+  apex[10][2]=-h/2;
+
+  apex[11][0]=r/2;
+  apex[11][1]=-r*0.865;
+  apex[11][2]=-h/2;
+}
+
+void hex_prism::plot()
+{
+  vector<vector<Point3D> > apex_to_plot=vector<vector<Point3D> > {{
+      Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0)},{
+      Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0),Point3D(0,0,0)}};
+  
+  for(unsigned i=0; i<12; i++)
+    {
+      Vector<double,3> out;
+      out=rot_matrix()*apex[i]+pos;
+
+      for(unsigned j=0; j<3; j++)
+	{
+	   apex_to_plot[i/6][i%6][j]=out[j];
+	}
+    }
+  id=api->draw_polyhedron(apex_to_plot,"red");
 }
