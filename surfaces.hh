@@ -7,8 +7,8 @@
 using std::vector;
 using drawNS::Point3D; 
 
-/*
-klasa powierzchni
+/**
+\brief klasa powierzchni
 pola: 
     wskaznik do api Draw3D
 metody:
@@ -25,8 +25,8 @@ public:
 };
 
 
-/*
-klasa dna - plaska szara powierzchnia
+/**
+\brief klasa dna - plaska szara powierzchnia
 pola:
    points - punkty na ktorych rozpiete jest dno
 metody:
@@ -44,8 +44,8 @@ public:
 };
 
 
-/*
-klasa wody - faldowana niebieska powierzchnia
+/**
+\brief klasa wody - faldowana niebieska powierzchnia
 pola:
    points - punkty na ktorych rozpiete jest dno
 metody:

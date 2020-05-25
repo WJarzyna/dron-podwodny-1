@@ -6,8 +6,8 @@
 using std::vector;
 using drawNS::Point3D; 
 
-/*
-wieloscian
+/**
+\brief wieloscian
 pola: api - wskaznik do api Draw3D
       id - id figury do modyfikacji
       angle_x,y,z - katy wzgledem globalnego ukladu
@@ -42,8 +42,8 @@ public:
   void erase(){api->erase_shape(id);};
 };
 
-/*
-klasa prostopadloscian
+/**
+\brief klasa prostopadloscian
 pola:
     apex - wierzcholki
 
@@ -61,8 +61,8 @@ public:
   void plot();
 };
 
-/*
-klasa graniastoslup szesciokatny
+/**
+\brief klasa graniastoslup szesciokatny
 pola:
     apex - wierzcholki
 

@@ -1,7 +1,7 @@
 #include "shapes.hh"
 
-/*
-klasa drona
+/**
+\brief klasa drona
 
 konstruktor:
     argument: wskaznik do api
