@@ -2,16 +2,6 @@
 
 /**
 \brief klasa drona
-
-konstruktor:
-    argument: wskaznik do api
-
-    tworzy drona z dwoma wirnikami, ustawia wirniki w polozeniu startowym
-
-move:
-    porusza dronem zgodnie z jego orentacja
-
-    argument: wektor przemieszczenia
  */
 
 
@@ -32,7 +22,7 @@ public:
     lscrew.rot_y(PI/2);
     rscrew.plot();
     lscrew.plot();
-  };
+  };/**<argument: wskaznik do api, tworzy drona z dwoma wirnikami, ustawia wirniki w polozeniu startowym */
   
-  void move(Vector<double,3> shift);
+  void move(Vector<double,3> shift); /**< porusza dronem zgodnie z jego orentacja. argument: wektor przemieszczenia */
 };
