@@ -10,7 +10,7 @@ PROGNAME=dron.x
 %.o : %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-testz: $(OBJ) 
+dron: $(OBJ) 
 	$(CC) -o $(PROGNAME) $(OBJ) -lpthread
 
 clean:

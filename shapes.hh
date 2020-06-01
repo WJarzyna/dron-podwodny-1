@@ -40,6 +40,8 @@ public:
   virtual void plot()=0;
   Matrix<double,3> rot_matrix();
   void erase(){api->erase_shape(id);};
+  //Vector<double,3> get_pos(){return pos;};
+  //virtual double get_col_radius()=0;
 };
 
 /**
@@ -59,6 +61,7 @@ protected:
 public:
   explicit cuboid(double x, double y, double z, std::shared_ptr<drawNS::Draw3DAPI> newapi);//konstruktor po wymiarach
   void plot();
+  //double get_col_radius(){return apex[0].len();};
 };
 
 /**
@@ -78,4 +81,5 @@ protected:
 public:
   explicit hex_prism(double h, double r, std::shared_ptr<drawNS::Draw3DAPI> newapi);//konstruktor po wymiarach
   void plot();
+  //double get_col_radius(){return apex[0].len();};//symetryczne wzgledem srodka, mozna podac dowolny wierzcholek
 };
