@@ -27,3 +27,11 @@ public:
   void move(Vector<double,3> shift); /**< porusza dronem zgodnie z jego orentacja. argument: wektor przemieszczenia */
   bool is_colliding( polyhedron &obj)const;
 };
+
+class interface
+{
+public:
+  void move(boat* boat, Vector<double,3> mov){boat->move(mov);};
+  void rotate(boat* boat, char axis, double angle);
+  void plot(boat* boat){boat->plot();};
+};

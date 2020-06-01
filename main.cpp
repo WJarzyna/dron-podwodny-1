@@ -39,25 +39,34 @@ int main()
       x->plot();
     }
 
+  std::vector<boat*> b;
   
-  boat boat(api);
-  boat.plot();
+  b.push_back(new boat(api));
+  b.push_back(new boat(api));
+
+  interface in;
+  in.plot(b[0]);
+  in.plot(b[1]);
+
 
   bool ctrl_flag=false;
+  int drno=0;
   while(!ctrl_flag)
     {
+      
       Vector<double,3> m;
       switch(std::cin.get())
 	{
-	case 'w':m[0]=1;break;
-	case 's':m[0]=-1;break;
-	case 'a':boat.rot_z(-PI/12);break;
-	case 'd':boat.rot_z(PI/12);break;
-	case 'r':boat.rot_x(-PI/36);break;
-	case 'f':boat.rot_x(PI/36);break;
+	case 'e':drno=drno?0:1;break;
+	case 'w':m[0]=1;in.move(b[drno],m);break;
+	case 's':m[0]=-1;in.move(b[drno],m);break;
+	case 'a':in.rotate(b[drno],'z',10);break;
+	case 'd':in.rotate(b[drno],'z',-10);break;
+	case 'r':in.rotate(b[drno],'x',30);break;
+	case 'f':in.rotate(b[drno],'x',-30);break;
 	case 'q':ctrl_flag=true;break;
 	}
-      boat.move(m);
+      
       api ->redraw();
       //if(boat.is_colliding(duck))cout<<"kolizja!";
     }

@@ -38,3 +38,17 @@ bool boat::is_colliding(polyhedron &obj)
 */
 
 
+void interface::rotate(boat* boat, char axis, double angle)
+{
+  angle=angle*2*PI/360;
+  switch(axis)
+    {
+    case 'x':;
+    case 'X':boat->rot_x(angle);break;
+    case 'y':;
+    case 'Y':boat->rot_y(angle);break;
+    case 'z':;
+    case 'Z':boat->rot_z(angle);break;
+    default:std::cerr<<"zla os"<<'\n';
+    }
+}
