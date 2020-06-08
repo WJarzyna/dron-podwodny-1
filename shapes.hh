@@ -44,7 +44,7 @@ public:
   void erase(){api->erase_shape(id);};
   Vector<double,3> get_pos(){return pos;};
   virtual double get_col_radius()=0;
-  bool is_colliding(polyhedron &obj);
+  //bool is_colliding(polyhedron &obj);
 };
 
 /**

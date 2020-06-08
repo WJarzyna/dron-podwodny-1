@@ -30,6 +30,17 @@ void boat::move(Vector<double,3> shift)
 }
 
 
+bool boat::is_colliding(polyhedron &obj)
+{
+  Vector<double,3> dist_v;
+  
+  dist_v=pos;
+  dist_v=dist_v - obj.get_pos();
+  return dist_v.len()<(this->get_col_radius()+obj.get_col_radius());
+}
+
+
+
 void interface::rotate(boat* boat, char axis, double angle)
 {
   angle=angle*2*PI/360;

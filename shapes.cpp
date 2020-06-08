@@ -1,13 +1,5 @@
 #include "shapes.hh"
 
-bool polyhedron::is_colliding(polyhedron &obj)
-{
-  Vector<double,3> dist_v;
-  
-  dist_v=pos;
-  dist_v=dist_v - obj.get_pos();
-  return dist_v.len()<(this->get_col_radius()+obj.get_col_radius());
-}
 
 
 cuboid::cuboid(double x, double y, double z, std::shared_ptr<drawNS::Draw3DAPI> newapi)

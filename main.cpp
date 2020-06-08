@@ -61,8 +61,8 @@ int main()
       switch(std::cin.get())
 	{
 	case 'e':drno=drno?0:1;break;
-	case 'w':m[0]=1;in.move(b[drno],m);break;
-	case 's':m[0]=-1;in.move(b[drno],m);break;
+	case 'w':m[0]=1;break;
+	case 's':m[0]=-1;break;
 	case 'a':in.rotate(b[drno],'z',10);break;
 	case 'd':in.rotate(b[drno],'z',-10);break;
 	case 'r':in.rotate(b[drno],'x',30);break;
@@ -70,10 +70,11 @@ int main()
 	case 'p':cout<<"stworzono "<<polyhedron::poly_cnt()<<"wieloscianow "<<Vector<double,3>::vect_cnt()<<" wektorow"<<'\n';break;
 	case 'q':ctrl_flag=true;break;
 	}
-      /*for(polyhedron* x:obj)
+      in.move(b[drno],m);
+      for(polyhedron* x:obj)
 	  {
-	    if(b[drno]->is_colliding(x))cout<<"kolizja\n";
-	    }*/
+	    if(b[drno]->is_colliding(*x))cout<<"kolizja\n";
+	  }
       api ->redraw();
     }
   
