@@ -4,6 +4,7 @@ template <class TYPE, unsigned SIZE>
 Vector<TYPE,SIZE>::Vector()
 {
   for (unsigned i=0;i<SIZE;i++) x[i]=0;
+  count++;
 }
 
 

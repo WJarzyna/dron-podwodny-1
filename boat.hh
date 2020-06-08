@@ -25,7 +25,7 @@ public:
   };/**<argument: wskaznik do api, tworzy drona z dwoma wirnikami, ustawia wirniki w polozeniu startowym */
   
   void move(Vector<double,3> shift); /**< porusza dronem zgodnie z jego orentacja. argument: wektor przemieszczenia */
-  bool is_colliding( polyhedron &obj)const;
+ 
 };
 
 class interface

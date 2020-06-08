@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-pedantic -Wall -std=c++17 -iquote inc
+CFLAGS=-pedantic -Wall -std=c++1z -iquote inc
 
 DEPS=vect.hh lineq.hh matrix.hh shapes.hh surfaces.hh boat.hh
 

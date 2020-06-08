@@ -7,9 +7,11 @@
 template <class TYPE, unsigned SIZE>
 class Vector
 {
+  inline static unsigned count=0;
   TYPE x[SIZE];
   
 public:
+  static unsigned vect_cnt(){return count;};
   Vector<TYPE,SIZE>(); 
   const TYPE operator [] (unsigned arg) const { return x[arg]; }
   TYPE& operator [] (unsigned arg) { return x[arg]; }
@@ -24,8 +26,8 @@ public:
 
   
   double len();
-
-
+  ~Vector(){--count;};
+  
 };
 
 template <class TYPE, unsigned SIZE>

@@ -28,14 +28,6 @@ void boat::move(Vector<double,3> shift)
       plot();
     }
 }
-/*
-bool boat::is_colliding(polyhedron &obj)
-{
-  Vector<double,3> dist_v;
-  dist_v=pos - obj->get_pos();
-  return dist_v.len()<(this->get_col_radius()+obj.get_col_radius());
-}
-*/
 
 
 void interface::rotate(boat* boat, char axis, double angle)
@@ -43,12 +35,9 @@ void interface::rotate(boat* boat, char axis, double angle)
   angle=angle*2*PI/360;
   switch(axis)
     {
-    case 'x':;
-    case 'X':boat->rot_x(angle);break;
-    case 'y':;
-    case 'Y':boat->rot_y(angle);break;
-    case 'z':;
-    case 'Z':boat->rot_z(angle);break;
+    case 'x':boat->rot_x(angle);break;
+    case 'y':boat->rot_y(angle);break;
+    case 'z':boat->rot_z(angle);break;
     default:std::cerr<<"zla os"<<'\n';
     }
 }

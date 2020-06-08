@@ -1,7 +1,18 @@
 #include "shapes.hh"
 
+bool polyhedron::is_colliding(polyhedron &obj)
+{
+  Vector<double,3> dist_v;
+  
+  dist_v=pos;
+  dist_v=dist_v - obj.get_pos();
+  return dist_v.len()<(this->get_col_radius()+obj.get_col_radius());
+}
+
+
 cuboid::cuboid(double x, double y, double z, std::shared_ptr<drawNS::Draw3DAPI> newapi)
 {
+  ++count;
   api=newapi;
   //rot_matrix[0][0]=rot_matrix[1][1]=rot_matrix[2][2]=1;
   Vector<double,3> vect;
@@ -79,6 +90,7 @@ void cuboid::move(Vector<double,3> shift)
 
 hex_prism::hex_prism(double h, double r,std::shared_ptr<drawNS::Draw3DAPI> newapi)
 {
+  ++count;
   api=newapi;
 
   //rot_matrix[0][0]=rot_matrix[1][1]=rot_matrix[2][2]=1;
